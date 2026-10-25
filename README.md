@@ -4,9 +4,8 @@ This is the Phase 4 implementation foundation for the moderated Learning Managem
 
 ## Phase 2 alignment
 
-The valid Phase 2 document has now been received. It defines FR-01–FR-14 and NFR-01–NFR-06, all prioritised as Must. The implementation must preserve late submissions, calculate `ceil((receipt time - effective deadline) / 24 hours)`, apply the 10%-of-maximum-mark deduction for days 1–3, apply zero after 72 hours, and round the final mark to two decimals. The HoD must approve every mark in the selected assessment batch before release. See `requirements-traceability.csv` for the current mapping.
+ Phase 2 defines FR-01–FR-14 and NFR-01–NFR-06, all prioritised as Must. The implementation must preserve late submissions, calculate `ceil((receipt time - effective deadline) / 24 hours)`, apply the 10%-of-maximum-mark deduction for days 1–3, apply zero after 72 hours, and round the final mark to two decimals. The HoD must approve every mark in the selected assessment batch before release. See `requirements-traceability.csv` for the current mapping.
 
-The Phase 2 document repeats FR-10 twice; this project treats the repeated entry as one requirement and does not create a second implementation requirement.
 
 ## Step-by-step setup
 
@@ -108,6 +107,4 @@ The schema includes indexes for the principal course, lecturer, enrolment, submi
 sqlite3 final-demo.db "EXPLAIN QUERY PLAN SELECT * FROM submission WHERE student_id = 3;"
 ```
 
-## Evidence to save for the report
 
-Keep terminal output or screenshots for: successful CMake build, passing CTest run, database tables, static-analysis result, Git history, each role dashboard, assignment creation, file submission, marking, moderation rejection/approval, release, and post-release student viewing. These become Phase 4, Phase 5, and Phase 6 evidence. The `END_TO_END_DEMO.md` file contains the exact demonstration sequence.
