@@ -1,0 +1,21 @@
+Requirement,Priority,Phase 4 design/source target,Verification target,Status
+FR-01,Must,AuthenticationService; SqliteUserRepository; ConsoleUi login,AUTH-01 through AUTH-04,Implemented and tested: parameterised login; salted hash verification; inactive-account rejection; sign-out
+FR-02,Must,User hierarchy; service scope checks; role menus,SEC-01 through SEC-16,Implemented: four role types; lecturer course scope; student ownership; HoD department scope; administrator menu access
+FR-03,Must,AdministrationService; user_account repository; Administrator menu,ADMIN-01 through ADMIN-05,Implemented and tested: create/edit/deactivate accounts; role validation; profile creation
+FR-04,Must,AcademicAdministrationService; department/course operations; Administrator menu,ADMIN-06 through ADMIN-09,Implemented and tested: department and course creation with validation
+FR-05,Must,AcademicAdministrationService; course_lecturer/enrolment operations; Administrator menu,ADMIN-10 through ADMIN-13,Implemented and tested: lecturer assignment; enrolment; withdrawal; HoD assignment
+FR-06,Must,AssignmentService; Lecturer menu,ASSIGN-01 through ASSIGN-05,Implemented and tested: scoped create/edit/activate/deactivate assignment; deadline and maximum-mark validation
+FR-07,Must,AssignmentService extension operation; Lecturer menu,EXT-01 through EXT-04,Implemented and tested: individual extension; original deadline preservation; lecturer scope
+FR-08,Must,StudentService; Student menu,STUDENT-01 through STUDENT-03,Implemented and tested: enrolled active-assignment listing; extension-aware effective deadline
+FR-09,Must,StudentService; local file storage; submission_version; Student menu,SUB-01 through SUB-05,Implemented and tested: file copy; SHA-256 checksum; versioned submissions; resubmission preservation
+FR-10,Must,StudentService deadline classifier; Student menu,SUB-06 through SUB-10,Implemented and tested: on-time/late classification and submission status
+FR-11,Must,PerDayLatePenaltyStrategy; MarkingService; Lecturer menu,LATE-01 through LATE-06,Implemented and tested: ceil late-day calculation; 10% per day; zero after 72 hours; two-decimal result
+FR-12,Must,MarkingService; mark repository; Lecturer menu,MARK-01 through MARK-05,Implemented and tested: lecturer scope; raw-mark bounds; feedback; final-mark persistence
+FR-13,Must,ModerationService; assessment_batch; moderation_decision; HoD menu,MOD-01 through MOD-06,Implemented and tested: HoD department scope; approve/reject; rejection blocks release; audit entries
+FR-14,Must,ModerationService released-mark query; Student menu,REL-01 through REL-03,Implemented and tested: student cannot view before release; can view released mark and feedback
+NFR-01,Must,SQLite indexes; indexed query paths; static SQL review,PERF-01,Implemented: indexes added for academic, submission, marking, moderation, and audit lookup paths; verify with EXPLAIN QUERY PLAN
+NFR-02,Must,Offline local executable and SQLite database,OFF-01,Implemented and demonstrated: local C++ executable with local SQLite database; no network dependency
+NFR-03,Must,OpenSSL PBKDF2-HMAC-SHA256 in src/password_hasher.cpp,SEC-17 through SEC-19,Implemented and tested: random per-password salt; PBKDF2-HMAC-SHA256; constant-time comparison; plaintext never stored
+NFR-04,Must,Role hierarchy and service-level scope checks,SEC-01 through SEC-16,Implemented and tested: authorization is enforced at service boundaries and menus; unauthorized lecturer, student, and HoD access is rejected
+NFR-05,Must,audit_log writes in MarkingService and ModerationService, AUD-01 through AUD-04,Implemented: actor; UTC timestamp; entity/action; old value; new value; reason; transaction boundary
+NFR-06,Must,Database transactions; foreign keys; rollback handling,DATA-01 through DATA-05,Implemented: PRAGMA foreign_keys; transactional marking/moderation/account writes; exception rollback paths

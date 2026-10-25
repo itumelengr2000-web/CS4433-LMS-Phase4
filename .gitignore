@@ -1,0 +1,7 @@
+build/
+*.db
+*.db-shm
+*.db-wal
+.env
+.vscode/
+compile_commands.json
